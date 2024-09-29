@@ -5,11 +5,38 @@ import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  
 } from '@ant-design/icons';
 import { Link,Outlet } from 'react-router-dom';
-import { Button, Layout, Menu, theme } from 'antd';
+import { Button, Layout, Menu, theme,Avatar,Dropdown } from 'antd';
 const { Header, Sider, Content } = Layout;
 const App = () => {
+  const items = [
+    {
+      key: '1',
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+          Profile
+        </a>
+      ),
+    },
+    {
+      key: '2',
+      label: (
+        <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+          Settings
+        </a>
+      ),
+    },
+    {
+      key: '3',
+      label: (
+        <Link to='/login'>
+          Logout
+          </Link>
+      ),
+    },
+  ];
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -28,17 +55,17 @@ const App = () => {
                   key: '1',
                   icon: <UserOutlined />,
                   
-              label:<Link to={'/button'}> Button</Link>,
+              label:<Link to={'stats'}> Stats</Link>,
             },
             {
                 key: '2',
                 icon: <VideoCameraOutlined />,
-                label: <Link to="calculator">Calculator</Link>,
+                label: <Link to="user">User</Link>,
             },
             {
                 key: '3',
                 icon: <UploadOutlined />,
-                label: <Link to= '/'>Home</Link>,
+                label: <Link to= 'reports'>Reports</Link>,
             },
         ]}
         />
@@ -49,6 +76,8 @@ const App = () => {
           style={{
             padding: 0,
             background: colorBgContainer,
+            display:"flex",
+            justifyContent: "space-between",
           }}
         >
           <Button
@@ -61,6 +90,22 @@ const App = () => {
               height: 64,
             }}
           />
+             <Dropdown
+        menu={{
+          items,
+        }}
+        placement="bottomRight"
+
+        arrow
+      >
+         <Avatar
+      style={{
+        backgroundColor: '#87d068',
+      }}
+      icon={<UserOutlined />}
+    />
+      </Dropdown>
+         
         </Header>
         <Content
           style={{
@@ -71,9 +116,9 @@ const App = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          Content
-        </Content>
+          
         <Outlet/>
+        </Content>
       </Layout>
     </Layout>
   );
