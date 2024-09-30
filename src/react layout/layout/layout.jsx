@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -7,10 +8,15 @@ import {
   VideoCameraOutlined,
   
 } from '@ant-design/icons';
-import { Link,Outlet } from 'react-router-dom';
+import { Link,Navigate,Outlet } from 'react-router-dom';
 import { Button, Layout, Menu, theme,Avatar,Dropdown } from 'antd';
 const { Header, Sider, Content } = Layout;
 const App = () => {
+  const navigate=useNavigate();
+  const logoutUser =()=>{
+    localStorage.removeItem('isAuth')
+    navigate('/login')
+  }
   const items = [
     {
       key: '1',
@@ -31,7 +37,7 @@ const App = () => {
     {
       key: '3',
       label: (
-        <Link to='/login'>
+        <Link to='/login' onClick={logoutUser}>
           Logout
           </Link>
       ),
@@ -90,6 +96,7 @@ const App = () => {
               height: 64,
             }}
           />
+          <h2>Connecting With Login Api</h2>
              <Dropdown
         menu={{
           items,

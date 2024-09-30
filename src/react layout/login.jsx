@@ -1,86 +1,64 @@
-// import React, { useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
-// import "./login.css"
-// function login() {
-//     const navigate =useNavigate();
-//     const [userName,setUserName]=useState('')
-//     const [password,setPassword]=useState('')
-
-//     function userValue(event){
-//         setUserName(event.target.value)
-//     }
-//     function passwordValue(e){
-//         setPassword(e.target.value)
-//     }
-//     function submitBtn(){
-//         if(userName=='baeed'&&password=="baeed123"){
-//             navigate('layout')
-//         }
-//         else{
-//             alert('Invalid Password or UserName')
-//         }
-//     }
-//   return (
-//     <>
-
-//     <div style={{
-//         width:"400PX",
-//         height:"300px",
-//         // display:'flex',
-//         justifyContent:'center',
-//         alignItems:'center',
-//         // height:'100vh',
-//         flexDirection: 'column',
-//         // gap:'40px',
-//         border:'1px solid black',
-//         marginTop:"10%",
-//         marginLeft:"40%"
-
-//     }}>
-//         <p className='p-hea'>Login Form</p>
-//         {/* <p>Enter UserName</p> */}
-//         <input type="text" value={userName} onChange={userValue} className='inputs' placeholder='UserName'/>
-//         {/* <p>Enter Password</p> */}
-
-//         <input type="password" value={password} onChange={passwordValue} className='inputs' placeholder='Password' />
-//         <button onClick={submitBtn} style={{
-//             // marginTop:"20px"
-//         }} className='sub-btn' >SUBMIT</button>
-//     </div>
-//     </>
-//   )
-// }
-
-// export default login
-
-import React from 'react';
-import { Button, Checkbox, Form, Input,Alert  } from 'antd';
+import React, { useState } from 'react';
+import { Button, Checkbox, Form, Input,Alert, message  } from 'antd';
 import Nav from './nav';
 import { useNavigate } from 'react-router-dom';
-
 const Login = () => {
-
   const navigate = useNavigate();
-
-  const onFinish = (values) => {
-    console.log('Success:', values);
-    if (values.username === 'baeed' && values.password === 'baeed123') {
-      navigate('/layout'); // Navigate to the layout page
-    } else {
-  <Alert
-  message="Error"
-  description="This is an error message about copywriting."
-  type="error"
-  showIcon
-/>
-      alert('wrong username or password')
+  const [loading,setLoading]=useState([])
+  const   onFinish = async (values) => {
+    setLoading(['true'])
+    const loginResponse = await loginUser(values)
+    console.log('loginResponse',loginResponse);
+    if(loginResponse==="success"){
+      navigate('/layout')
     }
+    else{
+      message.error('Invalid UserName or Password')
+    }
+    console.log('Success:', values);
+  //   if (values.username === 'baeed' && values.password === 'baeed123') {
+  //     localStorage.setItem('isAuth', true);
+  //     navigate('/layout'); // Navigate to the layout page
+  //   } else {
+  // <Alert message="Error"description="This is an error message about copywriting."
+  // type="error"
+  // showIcon/>
+  //     alert('wrong username or password')
+  //   }
   };
-
   const onFinishFailed = (errorInfo) => {
-    // console.log('Failed:', errorInfo);
   };
+  async function loginUser(values) {
+    const url = "https://fakestoreapi.com/auth/login";
+    const{username,password}=values
+    try {
+      setLoading([])
+      const response = await fetch(url,{
+        method: 'POST',
+        headers: {
+          "content-type":"application/json"},
+        body:JSON.stringify({
+          username,
+          password 
+      })
 
+      });
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+  
+      const json = await response.json();
+      const {token} =json;
+      localStorage.setItem('isAuth' ,token)
+      console.log(json);
+      return "success";
+    } catch (error) {
+      setLoading([])
+
+      console.error(error.message);
+      return error.message
+    }
+  }
   return (
     <>
     <Nav/>
@@ -129,7 +107,7 @@ const Login = () => {
     >
         <p style={{
             fontWeight:"600"
-        }}>baeed/baeed123</p>
+        }}>mor_2314/83r5^_</p>
       <Form.Item
         label="Username"
         name="username"
@@ -174,8 +152,8 @@ const Login = () => {
           span: 16,
         }}
       >
-        <Button type="primary" htmlType="submit">
-          Submit
+        <Button type="primary" htmlType="submit" loading={loading[0]} >
+          Login
         </Button>
       </Form.Item>
     </Form>
