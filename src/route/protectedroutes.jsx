@@ -13,7 +13,7 @@ function RequireAuth({ children }) {
     return isAuthRes ? (
         children
     ) : (
-        <Navigate to="/" replace state={{ path: location.pathname }} />
+        <Navigate to="/login" replace state={{ path: location.pathname }} />
     );
 }
 

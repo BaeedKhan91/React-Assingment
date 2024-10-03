@@ -37,7 +37,7 @@ const App = () => {
     {
       key: '3',
       label: (
-        <Link to='/login' onClick={logoutUser}>
+        <Link to='/login'  onClick={logoutUser}>
           Logout
           </Link>
       ),
@@ -94,6 +94,7 @@ const App = () => {
               fontSize: '16px',
               width: 64,
               height: 64,
+              
             }}
           />
           <h2>Connecting With Login Api</h2>
@@ -108,6 +109,7 @@ const App = () => {
          <Avatar
       style={{
         backgroundColor: '#87d068',
+        marginRight:"15%"
       }}
       icon={<UserOutlined />}
     />
