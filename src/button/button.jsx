@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { increment,decrement } from '../react layout/redux/slices/counterSlice'
 import "./button.css"
 const button = () => {
     const [count,setCount]=useState(0)

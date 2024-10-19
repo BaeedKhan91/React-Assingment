@@ -4,7 +4,7 @@ import Nav from './nav';
 import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const navigate = useNavigate();
-  const [loading,setLoading]=useState([])
+  const [loading,setLoading]= useState([])
   const   onFinish = async (values) => {
     setLoading(['true'])
     const loginResponse = await loginUser(values)
@@ -32,26 +32,26 @@ const Login = () => {
     const url = "https://fakestoreapi.com/auth/login";
     const{username,password}=values
     try {
-      setLoading([])
       const response = await fetch(url,{
         method: 'POST',
         headers: {
           "content-type":"application/json"},
-        body:JSON.stringify({
-          username,
-          password 
-      })
-
-      });
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-  
-      const json = await response.json();
-      const {token} =json;
-      localStorage.setItem('isAuth' ,token)
-      console.log(json);
-      return "success";
+          body:JSON.stringify({
+            username,
+            password 
+          })
+          
+        });
+        if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`);
+        }
+        
+        const json = await response.json();
+        const {token} =json;
+        localStorage.setItem('isAuth' ,token)
+        console.log(json);
+        setLoading([])
+        return "success";
     } catch (error) {
       setLoading([])
 

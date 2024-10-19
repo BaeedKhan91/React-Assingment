@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.qr-code {
+    margin: 20px 0;
+}
+
+.input-field {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.generate-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.generate-button:hover {
+    background-color: #0056b3;
+}
+.download-button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #218838;
+}
+
+
+/* 🌟 Excited to share my latest project:
+A QR Code Generator! 🚀
+
+I created a simple and user-friendly interface using React that allows users to generate QR codes by entering any text. 🔤✨ For this project, I utilized the react-qr-code package from npm, which made it easy to render QR codes efficiently. This experience not only enhanced my skills in React but also demonstrated how QR codes can facilitate quick information sharing. 📱💡
+
+Looking ahead, I plan to add features like customizable designs and a download option for users. 🎨⬇️ It’s been a great learning experience, and I’m eager to see its real-world applications. If you have any suggestions or feedback, let’s connect! 🤝 I’d love to hear your thoughts! 💬
+
+#QRCodeGenerator #React #WebDevelopment #Coding #npm #LearnToCode*/

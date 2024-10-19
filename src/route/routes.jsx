@@ -7,6 +7,8 @@ import Layout from "../react layout/layout/layout"
 import User from "../react layout/layout/user"
 import Stats from "../react layout/layout/stats"
 import Reports from "../react layout/layout/reports"
+import Counter from '../react layout/layout/counter'
+import Todo from '../react layout/layout/todo'
 import RequireAuth from './protectedroutes'
 
 
@@ -45,6 +47,16 @@ function routes() {
           <RequireAuth>
         <Reports/>
         </RequireAuth>
+        }/>
+        <Route path='counter' element={
+          <RequireAuth>
+          <Counter/>
+          </RequireAuth>
+        }/>
+        <Route path='todo' element={
+          <RequireAuth>
+            <Todo/>
+          </RequireAuth>
         }/>
         
         </Route>

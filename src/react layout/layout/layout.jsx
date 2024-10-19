@@ -73,6 +73,16 @@ const App = () => {
                 icon: <UploadOutlined />,
                 label: <Link to= 'reports'>Reports</Link>,
             },
+            {
+              key: '4',
+              icon: <UploadOutlined />,
+              label: <Link to= 'counter'>Counter</Link>,
+          },
+          {
+            key: '5',
+            icon: <UploadOutlined />,
+            label: <Link to= 'todo'>TodoList</Link>,
+        },
         ]}
         />
         
